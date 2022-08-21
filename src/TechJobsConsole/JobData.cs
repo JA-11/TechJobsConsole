@@ -49,9 +49,31 @@ namespace TechJobsConsole
             {
                 string aValue = row[column];
 
-                if (aValue.Contains(value))
+                if (aValue.IndexOf(value, System.StringComparison.OrdinalIgnoreCase) >= 0)  //updated to be case-insensitive
                 {
                     jobs.Add(row);
+                }
+            }
+
+            return jobs;
+        }
+
+        public static List<Dictionary<string, string>> FindByValue(string searchTerm)
+        {
+            // load data, if not already loaded
+            LoadData();
+
+            List<Dictionary<string, string>> jobs = new List<Dictionary<string, string>>();
+
+            foreach (Dictionary<string, string> row in AllJobs)
+            {
+                foreach (KeyValuePair<string, string> pair in row)
+                {
+                    if (pair.Value.IndexOf(searchTerm, System.StringComparison.OrdinalIgnoreCase) >= 0)  //case-insensitive 
+                    {
+                        jobs.Add(row);
+                        break;  //prevents adding duplicate jobs
+                    }
                 }
             }
 
