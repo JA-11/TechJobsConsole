@@ -72,7 +72,7 @@ namespace TechJobsConsole
                     if (pair.Value.IndexOf(searchTerm, System.StringComparison.OrdinalIgnoreCase) >= 0)  //case-insensitive 
                     {
                         jobs.Add(row);
-                        break;  //prevents adding duplicate jobs
+                        break;  //prevents adding duplicate jobs to the List
                     }
                 }
             }
